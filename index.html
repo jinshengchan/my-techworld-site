@@ -3,106 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>NovaTech Lab</title>
+<meta name="theme-color" content="#020617">
+<title>JinTech World 11.0</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",Arial}
-body{background:#050816;color:#fff;overflow-x:hidden}
-canvas{position:fixed;inset:0;z-index:-1}
-header{height:80px;display:flex;justify-content:space-between;align-items:center;padding:0 8%}
-.logo{font-size:30px;font-weight:bold;color:#00eaff}
-nav a{color:#aaa;text-decoration:none;margin-left:25px}
-nav a:hover{color:#00eaff}
-.hero{min-height:85vh;display:flex;align-items:center;padding:0 8%}
-.hero h1{font-size:60px;background:linear-gradient(90deg,#00eaff,#8b5cff);-webkit-background-clip:text;color:transparent}
-.hero p{margin-top:20px;font-size:20px;color:#aaa}
-.btn{display:inline-block;margin-top:30px;padding:14px 35px;border-radius:30px;background:#00eaff;color:#000;text-decoration:none}
-section{padding:60px 8%}
-.title{font-size:36px;margin-bottom:30px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
-.card{background:rgba(15,25,50,.8);border:1px solid #20345c;border-radius:18px;padding:30px;transition:.3s}
-.card:hover{transform:translateY(-8px);border-color:#00eaff}
+body{background:#020617;color:#fff;overflow-x:hidden}
+canvas{position:fixed;inset:0;z-index:-3}
+.bg{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 20% 20%,#00eaff55,transparent 35%),radial-gradient(circle at 80% 30%,#8b5cff55,transparent 35%)}
+header{position:fixed;top:0;width:100%;height:80px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:#ffffff12;backdrop-filter:blur(20px);border-bottom:1px solid #ffffff20;z-index:10}
+.logo{font-size:30px;font-weight:900;background:linear-gradient(90deg,#00eaff,#c084fc);-webkit-background-clip:text;color:transparent}
+nav a{color:#ddd;text-decoration:none;margin-left:25px}
+.hero{height:100vh;display:flex;align-items:center;padding:100px 6%}
+.hero h1{font-size:clamp(45px,8vw,90px);background:linear-gradient(90deg,#00eaff,#c084fc);-webkit-background-clip:text;color:transparent}
+.hero p{color:#aaa;font-size:22px;margin:25px 0}
+.btn{padding:16px 45px;border-radius:50px;background:linear-gradient(90deg,#00eaff,#8b5cff);color:#000;text-decoration:none;font-weight:bold}
+section{padding:80px 6%}
+.title{font-size:42px;margin-bottom:35px}
+.glass{background:#ffffff12;border:1px solid #ffffff25;border-radius:25px;padding:30px;backdrop-filter:blur(20px)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
 .card h3{color:#00eaff;margin-bottom:15px}
-.card p{color:#bbb;line-height:1.8}
-.tags span{display:inline-block;background:#101c38;color:#00eaff;padding:8px 15px;border-radius:20px;margin:5px}
-footer{text-align:center;padding:40px;color:#666}
-@media(max-width:700px){nav{display:none}.hero h1{font-size:40px}}
+.card p{color:#ccc;line-height:1.8}
+.info{line-height:2;font-size:17px}
+.chat{max-width:800px;margin:auto}
+.chatbox{height:220px;background:#0005;border-radius:20px;padding:20px;color:#ccc}
+.input{display:flex;gap:10px;margin-top:15px}
+.input input{flex:1;padding:15px;border-radius:30px;border:0}
+.input button{padding:15px 25px;border:0;border-radius:30px;background:#00eaff}
+footer{text-align:center;padding:50px;color:#777}
+@media(max-width:700px){nav{display:none}section{padding:55px 5%}}
 </style>
 </head>
 <body>
+<div class="bg"></div>
 <canvas id="stars"></canvas>
 
 <header>
-<div class="logo">NovaTech Lab</div>
+<div class="logo">JinTech World</div>
 <nav>
+<a href="#dashboard">Dashboard</a>
 <a href="#ai">AI</a>
-<a href="#game">游戏</a>
-<a href="#server">服务器</a>
-<a href="#project">项目</a>
+<a href="#project">Projects</a>
+<a href="#network">Network</a>
 </nav>
 </header>
 
 <div class="hero">
 <div>
-<h1>探索 AI<br>与未来科技</h1>
-<p>个人科技实验室 · GPT · 游戏开发 · Cloudflare · 软件技术</p>
-<a class="btn" href="#project">进入实验室</a>
+<h1>JinTech<br>Control Center</h1>
+<p>AI · Cloud · Game · Personal Technology Platform</p>
+<a class="btn" href="#dashboard">进入控制台</a>
 </div>
 </div>
+
+<section id="dashboard">
+<h2 class="title">📊 System Dashboard</h2>
+<div class="cards">
+<div class="glass info">
+📅 日期：<span id="date"></span><br>
+📆 星期：<span id="week"></span><br>
+⏰ 时间：<span id="time"></span>
+</div>
+<div class="glass info">
+🌍 IP：<span id="ip">获取中</span><br>
+💻 浏览器：<span id="browser"></span><br>
+📱 设备：<span id="device"></span>
+</div>
+</div>
+</section>
 
 <section id="ai">
-<h2 class="title">🤖 AI实验室</h2>
-<div class="cards">
-<div class="card"><h3>GPT研究</h3><p>人工智能应用、提示词优化、AI自动化。</p></div>
-<div class="card"><h3>AI工具</h3><p>记录实用AI工具和效率提升方案。</p></div>
+<h2 class="title">🤖 AI Core</h2>
+<div class="glass chat">
+<div class="chatbox">
+JinTech AI System Ready<br>
+支持未来 GPT API、知识库、自动化任务。
 </div>
-</section>
-
-<section id="game">
-<h2 class="title">🎮 游戏开发</h2>
-<div class="cards">
-<div class="card"><h3>手游开发</h3><p>Android、Windows、iOS游戏开发。</p></div>
-<div class="card"><h3>性能优化</h3><p>渲染、客户端、BUG分析。</p></div>
+<div class="input">
+<input placeholder="输入问题...">
+<button>发送</button>
 </div>
-</section>
-
-<section id="server">
-<h2 class="title">☁ 服务器实验室</h2>
-<div class="cards">
-<div class="card"><h3>Cloudflare</h3><p>Workers、Pages、DNS、CDN技术。</p></div>
-<div class="card"><h3>网络技术</h3><p>VPS、Linux、服务器部署。</p></div>
 </div>
 </section>
 
 <section id="project">
-<h2 class="title">🚀 项目展示</h2>
+<h2 class="title">🚀 Project Center</h2>
 <div class="cards">
-<div class="card"><h3>AI Project</h3><p>AI工具实验项目。</p></div>
-<div class="card"><h3>Game Project</h3><p>游戏开发记录。</p></div>
-<div class="card"><h3>Tech Lab</h3><p>个人技术研究空间。</p></div>
+<div class="glass card"><h3>Game Studio</h3><p>游戏开发、多端优化、服务器技术。</p></div>
+<div class="glass card"><h3>AI Platform</h3><p>AI工具和智能应用。</p></div>
+<div class="glass card"><h3>Cloud Lab</h3><p>Cloudflare、VPS、Linux。</p></div>
 </div>
 </section>
 
-<section>
-<h2 class="title">🛠 技术方向</h2>
-<div class="tags">
-<span>AI</span><span>GPT</span><span>C#</span><span>Unity</span><span>Cloudflare</span><span>Linux</span><span>服务器</span>
+<section id="network">
+<h2 class="title">🌐 Network Monitor</h2>
+<div class="glass">
+<p>网络测速、IP详情、Ping检测功能预留。</p>
 </div>
 </section>
 
-<footer>© 2026 NovaTech Lab</footer>
+<footer>© 2026 JinTech World 11.0</footer>
 
 <script>
+function update(){
+let d=new Date();
+let w=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+date.innerText=d.toLocaleDateString("zh-CN");
+week.innerText=w[d.getDay()];
+time.innerText=d.toLocaleTimeString("zh-CN");
+}
+setInterval(update,1000);update();
+browser.innerText=navigator.userAgent;
+device.innerText=navigator.platform;
+
+fetch("https://api.ipify.org?format=json").then(r=>r.json()).then(d=>ip.innerText=d.ip).catch(()=>ip.innerText="失败");
+
 const c=document.getElementById("stars"),ctx=c.getContext("2d");
-let w,h,stars=[];
+let s=[],w,h;
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
 resize();onresize=resize;
-for(let i=0;i<150;i++)stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2,s:Math.random()*.5});
-function draw(){
-ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";
-stars.forEach(a=>{ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill();a.y+=a.s;if(a.y>h)a.y=0});
-requestAnimationFrame(draw)
-}
-draw();
+for(let i=0;i<(innerWidth<700?70:160);i++)s.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2,v:.3+Math.random()*.5});
+function loop(){ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";s.forEach(a=>{ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,7);ctx.fill();a.y+=a.v;if(a.y>h)a.y=0});requestAnimationFrame(loop)}
+loop();
 </script>
 </body>
 </html>
