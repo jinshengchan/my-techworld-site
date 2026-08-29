@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NovaTech Lab</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",Arial}
+body{background:#050816;color:#fff;overflow-x:hidden}
+canvas{position:fixed;inset:0;z-index:-1}
+header{height:80px;display:flex;justify-content:space-between;align-items:center;padding:0 8%}
+.logo{font-size:30px;font-weight:bold;color:#00eaff}
+nav a{color:#aaa;text-decoration:none;margin-left:25px}
+nav a:hover{color:#00eaff}
+.hero{min-height:85vh;display:flex;align-items:center;padding:0 8%}
+.hero h1{font-size:60px;background:linear-gradient(90deg,#00eaff,#8b5cff);-webkit-background-clip:text;color:transparent}
+.hero p{margin-top:20px;font-size:20px;color:#aaa}
+.btn{display:inline-block;margin-top:30px;padding:14px 35px;border-radius:30px;background:#00eaff;color:#000;text-decoration:none}
+section{padding:60px 8%}
+.title{font-size:36px;margin-bottom:30px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
+.card{background:rgba(15,25,50,.8);border:1px solid #20345c;border-radius:18px;padding:30px;transition:.3s}
+.card:hover{transform:translateY(-8px);border-color:#00eaff}
+.card h3{color:#00eaff;margin-bottom:15px}
+.card p{color:#bbb;line-height:1.8}
+.tags span{display:inline-block;background:#101c38;color:#00eaff;padding:8px 15px;border-radius:20px;margin:5px}
+footer{text-align:center;padding:40px;color:#666}
+@media(max-width:700px){nav{display:none}.hero h1{font-size:40px}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<header>
+<div class="logo">NovaTech Lab</div>
+<nav>
+<a href="#ai">AI</a>
+<a href="#game">游戏</a>
+<a href="#server">服务器</a>
+<a href="#project">项目</a>
+</nav>
+</header>
+
+<div class="hero">
+<div>
+<h1>探索 AI<br>与未来科技</h1>
+<p>个人科技实验室 · GPT · 游戏开发 · Cloudflare · 软件技术</p>
+<a class="btn" href="#project">进入实验室</a>
+</div>
+</div>
+
+<section id="ai">
+<h2 class="title">🤖 AI实验室</h2>
+<div class="cards">
+<div class="card"><h3>GPT研究</h3><p>人工智能应用、提示词优化、AI自动化。</p></div>
+<div class="card"><h3>AI工具</h3><p>记录实用AI工具和效率提升方案。</p></div>
+</div>
+</section>
+
+<section id="game">
+<h2 class="title">🎮 游戏开发</h2>
+<div class="cards">
+<div class="card"><h3>手游开发</h3><p>Android、Windows、iOS游戏开发。</p></div>
+<div class="card"><h3>性能优化</h3><p>渲染、客户端、BUG分析。</p></div>
+</div>
+</section>
+
+<section id="server">
+<h2 class="title">☁ 服务器实验室</h2>
+<div class="cards">
+<div class="card"><h3>Cloudflare</h3><p>Workers、Pages、DNS、CDN技术。</p></div>
+<div class="card"><h3>网络技术</h3><p>VPS、Linux、服务器部署。</p></div>
+</div>
+</section>
+
+<section id="project">
+<h2 class="title">🚀 项目展示</h2>
+<div class="cards">
+<div class="card"><h3>AI Project</h3><p>AI工具实验项目。</p></div>
+<div class="card"><h3>Game Project</h3><p>游戏开发记录。</p></div>
+<div class="card"><h3>Tech Lab</h3><p>个人技术研究空间。</p></div>
+</div>
+</section>
+
+<section>
+<h2 class="title">🛠 技术方向</h2>
+<div class="tags">
+<span>AI</span><span>GPT</span><span>C#</span><span>Unity</span><span>Cloudflare</span><span>Linux</span><span>服务器</span>
+</div>
+</section>
+
+<footer>© 2026 NovaTech Lab</footer>
+
+<script>
+const c=document.getElementById("stars"),ctx=c.getContext("2d");
+let w,h,stars=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();onresize=resize;
+for(let i=0;i<150;i++)stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2,s:Math.random()*.5});
+function draw(){
+ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";
+stars.forEach(a=>{ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill();a.y+=a.s;if(a.y>h)a.y=0});
+requestAnimationFrame(draw)
+}
+draw();
+</script>
+</body>
+</html>
